@@ -1,0 +1,37 @@
+
+
+import click
+import webbrowser
+from pyfacebook import GraphAPI
+import requests
+
+#import pyfacebook
+#DEFAULT_OAUTH_URL = "https://www.facebook.com/dialog/oauth"
+
+api = GraphAPI(app_id="276770624263710",
+               app_secret="157c670e522c91e17c9f8a1754332def", oauth_flow=True)
+api.get_authorization_url()
+#url = 'https://www.facebook.com/dialog/oauth?response_type=token&client_id=276770624263710&redirect_uri=https%3A%2F%2Fwww.adglue.io%2F&state=987654321&scope=ads_management'
+# webbrowser.open(url)
+
+# ('https://www.facebook.com/dialog/oauth?client_id=276770624263710&redirect_uri=https%3A%2F%2Fwww.adglue.io%2F&state=987654321&scope=ads_management', 'PyFacebook')
+# let user to do oauth at the browser opened by link.
+# then get the response url
+access_token = click.prompt("Please input full callback url", type=str)
+#api.exchange_user_access_token(response="url redirected")
+
+
+url = "https://graph.facebook.com/v12.0/me?fields=id,first_name,adaccounts" \
+    "&access_token=" + access_token
+
+'''url = "https://graph.facebook.com/v12.0/10208958136588198/permissions" \
+    "&access_token=" + access_token'''
+
+payload = {}
+headers = {}
+response2 = requests.request("GET", url, headers=headers, data=payload)
+
+response_json = response2.json()
+print(response_json)
+
+# Now the api will get the user access token.

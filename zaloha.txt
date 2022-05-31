@@ -1,0 +1,133 @@
+
+@auth.route('/gad', methods=['GET'])
+@jwt_required()
+def gad():
+    #if request.method == 'GET':
+        #response = {"message": "success"}
+        user = get_jwt_identity()
+        #auth_url = run_auth()
+        #response = {"url": auth_url}
+        # main(user)
+        scopes = ['https://www.googleapis.com/auth/adwords']
+
+        client_config = {
+            "web": {
+                "client_id": "384533319422-5kbe301aebs7i9nf6js486r37onmqvh7.apps.googleusercontent.com",
+                "project_id": "dv360test-335416",
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://oauth2.googleapis.com/token",
+                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                "client_secret": "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",
+                "redirect_uris": ["http://localhost:3000/"]
+            }
+        }
+
+        flow = Flow.from_client_config(client_config, scopes=scopes)
+        flow.redirect_uri = "http://localhost:3000/"
+
+        passthrough_val = hashlib.sha256(os.urandom(1024)).hexdigest()
+
+        authorization_url, state = flow.authorization_url(
+            access_type='offline',
+            state=passthrough_val,
+            include_granted_scopes='true'
+        )
+
+        response = {"url": authorization_url}
+        return response
+
+@auth.route('/gad2', methods=['GET'])
+@jwt_required()
+def gad2():
+    #if request.method == 'GET':  
+    code = _get_authorization_code(passthrough_val)
+
+    # Pass the code back into the OAuth module to get a refresh token.
+    flow.fetch_token(code=code)
+    #refresh_token = flow.credentials.refresh_token
+
+    #refresh_token = credentials._refresh_token
+    response = {"url": authorization_url}
+    return response
+
+
+
+
+@auth.route('/gad', methods=['GET'])
+@jwt_required()
+def gad():
+    # if request.method == 'GET':
+    #response = {"message": "success"}
+    user = get_jwt_identity()
+    #auth_url = run_auth()
+    #response = {"url": auth_url}
+    # main(user)
+    scopes = ['https://www.googleapis.com/auth/adwords']
+
+    client_config = {
+        "web": {
+            "client_id": "384533319422-5kbe301aebs7i9nf6js486r37onmqvh7.apps.googleusercontent.com",
+            "project_id": "dv360test-335416",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+            "client_secret": "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",
+            "redirect_uris": ["http://localhost:3000/"]
+        }
+    }
+    passthrough_val = hashlib.sha256(os.urandom(1024)).hexdigest()
+
+    flow = Flow.from_client_config(
+        client_config, scopes=scopes, state=passthrough_val)
+    flow.redirect_uri = "http://localhost:3000/"
+
+    authorization_url, state = flow.authorization_url(
+        access_type='offline',
+        state=passthrough_val,
+        include_granted_scopes='true'
+    )
+
+    response = {"url": authorization_url}
+    session['state'] = state
+
+    return response
+
+
+@auth.route('/gad2', methods=['POST'])
+@jwt_required()
+def gad2():
+    if request.method == 'POST':
+        a = json.loads(request.data)
+        s = a['tokens']
+        result = re.search('code=(.*)&scope', s)
+        asd = result.group(1)
+        state = session['state']
+
+        scopes = ['https://www.googleapis.com/auth/adwords']
+
+        client_config = {
+            "web": {
+                "client_id": "384533319422-5kbe301aebs7i9nf6js486r37onmqvh7.apps.googleusercontent.com",
+                "project_id": "dv360test-335416",
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://oauth2.googleapis.com/token",
+                "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                "client_secret": "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",
+                "redirect_uris": ["http://localhost:3000/"]
+            }
+        }
+
+        flow = Flow.from_client_config(
+            client_config, scopes=scopes, state=state)
+        flow.redirect_uri = "http://localhost:3000/"
+
+        #code = _get_authorization_code(state)
+
+        # Pass the code back into the OAuth module to get a refresh token.
+        flow.fetch_token(code=asd)
+        refresh_token = flow.credentials.refresh_token
+        print(refresh_token)
+
+        #refresh_token = credentials._refresh_token
+
+    return {"message": 'success'}

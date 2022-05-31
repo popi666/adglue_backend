@@ -1,0 +1,241 @@
+{
+    "nutraceutics": {
+        "datasource": {
+            "sklik": {
+                "access_token": "0xabda5b17f46462015122dcada9a3d8e40920e47aeb04f3e6436cff0f2a60aaf4638d0-chalpav@seznam.cz",
+                "rest_login": "https://api.sklik.cz/drak/json/client.loginByToken",
+                "entity": {
+                    "ads": {
+                        "rest_create_report": "https://api.sklik.cz/drak/json/ads.createReport",
+                        "rest_read_report": "https://api.sklik.cz/drak/json/ads.readReport",
+                        "display_columns": [
+                            "adStatus",
+                            "adType",
+                            "id",
+                            "name",
+                            "clicks",
+                            "skipRate",
+                            "views",
+                            "viewRate",
+                            "avgCostPerView",
+                            "sensitivity",
+                            "campaign.id",
+                            "campaign.name",
+                            "avgPos",
+                            "avgCpc",
+                            "clickMoney",
+                            "clicks",
+                            "conversions",
+                            "conversionValue",
+                            "impressionMoney",
+                            "impressions",
+                            "totalMoney",
+                            "transactions",
+                            "missImpressions",
+                            "ctr",
+                            "pno",
+                            "avgCpt"
+                        ],
+                        "sql_target_schema": "nutraceutics_stage",
+                        "sql_target_table": "sklik_ads"
+                    },
+                    "campaigns": {
+                        "rest_create_report": "https://api.sklik.cz/drak/json/campaigns.createReport",
+                        "rest_read_report": "https://api.sklik.cz/drak/json/campaigns.readReport",
+                        "display_columns": [
+                            "avgCpc",
+                            "avgPos",
+                            "clickMoney",
+                            "clicks",
+                            "conversions",
+                            "conversionValue",
+                            "createDate",
+                            "startDate",
+                            "endDate",
+                            "impressionMoney",
+                            "impressions",
+                            "totalMoney",
+                            "transactions",
+                            "missImpressions",
+                            "exhaustedBudget",
+                            "ctr",
+                            "pno",
+                            "ish",
+                            "ishContext",
+                            "ishSum",
+                            "avgCpt",
+                            "actualClicks",
+                            "id",
+                            "name",
+                            "totalBudget",
+                            "totalBudgetFrom",
+                            "totalClicks",
+                            "totalClicksFrom"
+                        ],
+                        "sql_target_schema": "nutraceutics_stage",
+                        "sql_target_table": "sklik_campaigns"
+                    }
+                }
+            },
+            "google_ads": {
+                "client_id": "609212886165-m05bud8bks9opvtfi0n21g1ov1936mev.apps.googleusercontent.com",
+                "client_secret": "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",
+                "refresh_token": "1//09gnQQPLq8CmMCgYIARAAGAkSNwF-L9IrvOMGIqUvdFR6VrRCWy0p5QMRNGwbzxXGYkiIZ1KJCX8jMEQfADa7f0FvqYQjAvPfH30",
+                "grant_type": "refresh_token",
+                "developer_token":"FcSPrV8UTy3Ed7fTug8KMg",
+                "top_level_customer_id": "6142249537",
+                "entity": {
+                    "ad_group_ad": {
+                        "sql_target_schema": "nutraceutics_stage",
+                        "sql_target_table": "googleads_adgroup_ad"
+                    },
+                    "campaign": {
+                        "sql_target_schema": "nutraceutics_stage",
+                        "sql_target_table": "googleads_campaign"
+                    }
+                }
+            },
+            "facebook": {
+                "access_token": "EAAD7uK6ZBVh4BAFQbsqVQawjg3tOzQnJ7jGKCZChSW3CqBJNZCYnmAWy4Qh5ZAZASQUpyKJHZAJJgWsVfHIwlGWrJWt4QrqTqcpwuZCzOn9T2OZAmMAoaaHsH1tICgbTZALUU76ulFDJtsPQpHG6rz1WkJN1Pd1Ow7BtFF3hQpD47ODYTlRhEIjtc",
+                "ad_account_id": "240270927886966",
+                "entity": {
+                    "ads": {
+                        "sql_target_schema": "nutraceutics_stage",
+                        "sql_target_table": "facebook_ads"
+                    },
+                    "campaign": {
+                        "sql_target_schema": "nutraceutics_stage",
+                        "sql_target_table": "facebook_campaign"
+                    }
+                }
+            },
+            "dv360": {
+                "client_id": "609212886165-m05bud8bks9opvtfi0n21g1ov1936mev.apps.googleusercontent.com",
+                "client_secret": "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",
+                "refresh_token": "1//09NBnXkbsmww7CgYIARAAGAkSNwF-L9IrPyQbvCzTvgVXxP8kUKqtsp_G6YQgOoeTEmXjZBduJXhERsmHUtQge4c1tE8fsW6I_Tg",
+                "grant_type": "refresh_token",
+                "developer_token":"FcSPrV8UTy3Ed7fTug8KMg",
+                "entity": {
+                    "ads": {
+                        "sql_target_schema": "nutraceutics_stage",
+                        "sql_target_table": "DV360_ads"
+                    },
+                    "campaign": {
+                        "sql_target_schema": "nutraceutics_stage",
+                        "sql_target_table": "DV360_campaigns"
+                    }
+                }
+            }
+        },
+        "target": {
+            "blob": {
+                "account_url": "https://baseadpoint.blob.core.windows.net/adpoint?sp=rw&st=2021-10-20T16:30:39Z&se=2021-12-31T01:30:39Z&spr=https&sv=2020-08-04&sr=c&sig=RVRcXoSdSWPd33wlHNmVicbJPZCgrvPm2WeetXoUsHw%3D",
+                "container_name": "adpoint",
+                "credential": "sp=rw&st=2021-10-20T16:30:39Z&se=2021-12-31T01:30:39Z&spr=https&sv=2020-08-04&sr=c&sig=RVRcXoSdSWPd33wlHNmVicbJPZCgrvPm2WeetXoUsHw%3D"
+            },
+            "mssql": {
+                "driver": "{ODBC Driver 17 for SQL Server}",
+                "server": "baseadpoint.database.windows.net",
+                "database": "adpoint",
+                "user": "adpoint",
+                "password": "RDmCVIKuUPFhnBR9PwJ3",
+                "log_db_schema": "nutraceutics_meta",
+                "extractor_log_table":"ExtractorLog"
+            }
+        }
+    },
+    "baseGeneral": {
+        "datasource": {
+            "sklik": {
+                "access_token": "0xabda5b17f46462015122dcada9a3d8e40920e47aeb04f3e6436cff0f2a60aaf4638d0-chalpav@seznam.cz",
+                "rest_login": "https://api.sklik.cz/drak/json/client.loginByToken",
+                "entity": {
+                    "ads": {
+                        "rest_create_report": "https://api.sklik.cz/drak/json/ads.createReport",
+                        "rest_read_report": "https://api.sklik.cz/drak/json/ads.readReport",
+                        "display_columns": [
+                            "adStatus",
+                            "adType",
+                            "id",
+                            "name",
+                            "clicks",
+                            "skipRate",
+                            "views",
+                            "viewRate",
+                            "avgCostPerView",
+                            "sensitivity",
+                            "campaign.id",
+                            "campaign.name",
+                            "avgPos",
+                            "avgCpc",
+                            "clickMoney",
+                            "clicks",
+                            "conversions",
+                            "conversionValue",
+                            "impressionMoney",
+                            "impressions",
+                            "totalMoney",
+                            "transactions",
+                            "missImpressions",
+                            "ctr",
+                            "pno",
+                            "avgCpt"
+                        ],
+                        "sql_target_schema": "baseGeneral_stage",
+                        "sql_target_table": "sklik_ads"
+                    },
+                    "campaigns": {
+                        "rest_create_report": "https://api.sklik.cz/drak/json/campaigns.createReport",
+                        "rest_read_report": "https://api.sklik.cz/drak/json/campaigns.readReport",
+                        "display_columns": [
+                            "avgCpc",
+                            "avgPos",
+                            "clickMoney",
+                            "clicks",
+                            "conversions",
+                            "conversionValue",
+                            "createDate",
+                            "startDate",
+                            "endDate",
+                            "impressionMoney",
+                            "impressions",
+                            "totalMoney",
+                            "transactions",
+                            "missImpressions",
+                            "exhaustedBudget",
+                            "ctr",
+                            "pno",
+                            "ish",
+                            "ishContext",
+                            "ishSum",
+                            "avgCpt",
+                            "actualClicks",
+                            "id",
+                            "name",
+                            "totalBudget",
+                            "totalBudgetFrom",
+                            "totalClicks",
+                            "totalClicksFrom"
+                        ],
+                        "sql_target_schema": "baseGeneral_stage",
+                        "sql_target_table": "sklik_campaigns"
+                    }
+                }
+            }
+        },
+        "target": {
+            "blob": {
+                "account_url": "https://baseadpoint.blob.core.windows.net/adpoint?sp=rw&st=2021-10-20T16:30:39Z&se=2021-12-31T01:30:39Z&spr=https&sv=2020-08-04&sr=c&sig=RVRcXoSdSWPd33wlHNmVicbJPZCgrvPm2WeetXoUsHw%3D",
+                "container_name": "adpoint",
+                "credential": "sp=rw&st=2021-10-20T16:30:39Z&se=2021-12-31T01:30:39Z&spr=https&sv=2020-08-04&sr=c&sig=RVRcXoSdSWPd33wlHNmVicbJPZCgrvPm2WeetXoUsHw%3D"
+            },
+            "mssql": {
+                "driver": "{ODBC Driver 17 for SQL Server}",
+                "server": "baseadpoint.database.windows.net",
+                "database": "adpoint",
+                "user": "adpoint",
+                "password": "RDmCVIKuUPFhnBR9PwJ3"
+            }
+        }
+    }
+}
